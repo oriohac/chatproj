@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatup</title>
+</head>
+<body>
+    <h1>Welcome</h1>
+    {% comment %} <script>
+        const socket = new WebSocket('ws://'+window.location.host+'/ws/testingout/');
+        socket.onmessage = function(event){
+            const data = JSON.parse(event.data);
+            console.log(data.message);
+        };
+    </script> {% endcomment %}
+    <script>
+        const socket = new WebSocket("ws://localhost:8000/ws/chat/room1/");
+
+socket.onopen = function() {
+    console.log("WebSocket Connected");
+    socket.send(JSON.stringify({ message: "Hello, WebSockets!" }));
+};
+
+socket.onmessage = function(event) {
+    console.log("Received:", event.data);
+};
+    </script>
+    
+</body>
+</html>
