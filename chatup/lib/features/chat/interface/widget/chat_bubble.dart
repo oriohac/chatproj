@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ChatBubble extends StatelessWidget {
   final bool isSender;
   final String message;
-  final bool sent;
+  final Widget sent;
   final bool delivered =false ;
   final bool read = false;
   final Widget time; 
@@ -27,11 +27,11 @@ class ChatBubble extends StatelessWidget {
           maxWidth: MediaQuery.of(context).size.width * 0.75, // Limit max width
         ),
         decoration: BoxDecoration(
-          color: isSender ? Colors.blue : Colors.green,
+          color: isSender ? Colors.green : Colors.blue,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(16),
+            topLeft: isSender ? Radius.circular(16) : Radius.zero,
             topRight: Radius.circular(16),
-            bottomLeft: isSender ? Radius.circular(16) : Radius.zero,
+            bottomLeft: Radius.circular(16),
             bottomRight: isSender ? Radius.zero : Radius.circular(16),
           ),
         ),
@@ -48,10 +48,9 @@ class ChatBubble extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                time,
+                sent,
                 SizedBox(width: 4),
-                sent ? Icon(Icons.check, size: 14, color: Colors.white) : 
-                       Icon(Icons.timer, size: 14, color: Colors.white),
+                time
               ],
             ),
           ],

@@ -2,10 +2,11 @@ from rest_framework import serializers
 from django.contrib.auth import authenticate
 from .models import Messages, User
 class MessageSerializer(serializers.ModelSerializer):
-    senderemail = serializers.CharField(source='sender.email',read_only = True)
+    sender = serializers.CharField(source='sender.email',read_only = True)
+    time = serializers.DateTimeField(format='iso-8601')
     class Meta:
         model = Messages
-        fields = ['message','time','room_name','id','sender','senderemail']
+        fields = ['id','message','time','room_name','sender']
         
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

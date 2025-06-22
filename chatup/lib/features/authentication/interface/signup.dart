@@ -197,7 +197,7 @@ class _SignupState extends State<Signup> {
                     } else {
                       setState(() {
                         signup();
-                        context.push(Pages.login);
+                        context.pushReplacement(Pages.login);
                       });
                     }
                   },

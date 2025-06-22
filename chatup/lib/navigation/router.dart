@@ -1,9 +1,11 @@
+import 'package:chatup/Core/models/user_details.dart';
 import 'package:chatup/features/authentication/interface/login.dart';
 import 'package:chatup/features/authentication/interface/signup.dart';
 import 'package:chatup/features/chat/interface/chat.dart';
 import 'package:chatup/features/chat/interface/chat_home.dart';
 import 'package:chatup/navigation/pages.dart';
 import 'package:chatup/splash.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 GoRouter appRouter = GoRouter(

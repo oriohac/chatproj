@@ -20,7 +20,7 @@ def home(request):
 
 @api_view(['GET'])
 def messages(request, room_name):
-    messages = Messages.objects.filter(room_name=room_name).order_by("-timestamp")
+    messages = Messages.objects.filter(room_name=room_name).order_by("time")
     serializer = MessageSerializer(messages, many=True)
     return Response(serializer.data)
     
@@ -66,3 +66,17 @@ def user_list(request):
     users = User.objects.exclude(id=request.user.id)  # Exclude the logged-in user
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def test_db_write(request):
+    """Test endpoint to verify DB writes work"""
+    try:
+        msg = Messages.objects.create(
+            sender=request.user,
+            message="TEST MESSAGE",
+            room_name="test_room"
+        )
+        return Response({"status": "success", "message_id": msg.id})
+    except Exception as e:
+        return Response({"status": "error", "message": str(e)}, status=500)

@@ -15,6 +15,23 @@ class AuthHolder {
 
 class Apiservice {
   Apiservice._singleton();
+//   static Future<List<Map<String, dynamic>>> getChatMessages(String roomName) async {
+//   try {
+//     final response = await instance.request(
+//       'api/messages/$roomName/',
+//       DioMethod.get,
+//     );
+    
+//     return (response.data as List).map((msg) => {
+//       'sender': msg['sender'],
+//       'message': msg['message'],
+//       'time': msg['time'],
+//     }).toList();
+//   } catch (e) {
+//     debugPrint("Error fetching messages: $e");
+//     rethrow;
+//   }
+// }
   static final Apiservice instance = Apiservice._singleton();
   String get baseurl {
     if (kDebugMode) {

@@ -26,6 +26,16 @@ class _LoginState extends State<Login> {
         },
       );
       if (response.statusCode == 200) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('login success: ${response.data}'),
+            behavior: SnackBarBehavior.floating,
+            duration: Duration(seconds: 7),
+          ),
+        );
+        await Future.delayed(Duration(seconds: 2), () {
+          context.pushReplacement(Pages.chathome);
+        });
         final String token = response.data['token'];
         final int id = response.data['id'];
         final email = response.data['email'];
@@ -38,14 +48,7 @@ class _LoginState extends State<Login> {
         prefs.setString('email', email);
         prefs.setString('first_name', firstname);
         prefs.setString('last_name', lastname);
-        
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('login success: ${response.data}'),
-              behavior: SnackBarBehavior.floating,
-            ),
-          );
-          context.push(Pages.chathome);
+
         
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -60,7 +63,6 @@ class _LoginState extends State<Login> {
     }
   }
 
-  
   @override
   void dispose() {
     _emailController.dispose();
@@ -124,11 +126,7 @@ class _LoginState extends State<Login> {
                       context,
                     ).showSnackBar(SnackBar(content: Text('Fill all fields')));
                   } else {
-                    setState(() {
-                      login();
-                      
-                    });
-                    
+                    login();
                   }
                 },
                 child: Container(
