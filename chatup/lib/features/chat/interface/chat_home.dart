@@ -33,12 +33,6 @@ class _ChatHomeState extends State<ChatHome> {
           padding: const EdgeInsets.only(left: 16),
           child: Row(
             children: [
-              GestureDetector(
-                onTap: () {
-                  context.pop();
-                },
-                child: Icon(Icons.arrow_back_ios),
-              ),
               SizedBox(width: 8),
               Text(
                 "Chats",
