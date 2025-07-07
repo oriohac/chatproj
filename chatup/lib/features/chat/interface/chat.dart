@@ -6,6 +6,7 @@ import 'package:chatup/features/chat/interface/chat_bloc/chat_bloc.dart';
 import 'package:chatup/features/chat/interface/chat_home.dart';
 import 'package:chatup/features/chat/interface/widget/chat_bubble.dart';
 import 'package:chatup/navigation/pages.dart';
+import 'package:chatup/noti_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -125,7 +126,8 @@ class _ChatState extends State<Chat> {
                 itemBuilder: (context, index) {
                   final message = messages[index];
                   final isSent =
-                      message["sender"] == context.read<ChatBloc>().currentUserEmail;
+                      message["sender"] ==
+                      context.read<ChatBloc>().currentUserEmail;
 
                   return Align(
                     alignment:
@@ -133,10 +135,14 @@ class _ChatState extends State<Chat> {
                     child: ChatBubble(
                       isSender: isSent,
                       message: message["message"]!,
-                      sent: isSent ? Icon(Icons.check, size: 14, color: Colors.white) : 
-                       SizedBox.shrink(),
+                      sent:
+                          isSent
+                              ? Icon(Icons.check, size: 14, color: Colors.white)
+                              : SizedBox.shrink(),
                       time: Text(
-                        formatTimeStamp(message["time"] ?? DateTime.now().toIso8601String()),
+                        formatTimeStamp(
+                          message["time"] ?? DateTime.now().toIso8601String(),
+                        ),
                         style: TextStyle(fontSize: 12),
                       ),
                     ),

@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:chatup/Core/services/apiservice.dart';
+import 'package:chatup/local_notification.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -117,6 +119,20 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       if (state is ChatLoaded) {
         final currentMessages = (state as ChatLoaded).messages;
 
+        // Check if this message is from another user (not the current user)
+        if (event.sender != currentUserEmail) {
+          // Show local notification
+          LocalNotificationService.display(
+            RemoteMessage(
+              notification: RemoteNotification(
+                title: 'New message',
+                body: '${event.sender.split('@')[0]}: ${event.message}',
+              ),
+              data: {'roomName': _roomName, 'sender': event.sender},
+            ),
+          );
+        }
+
         // Check if this is an update to a temporary message
         final tempIndex = currentMessages.indexWhere(
           (m) =>
@@ -144,6 +160,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
             'time': event.time,
           });
         }
+
         // Save to local storage
         await _saveMessages(updatedMessages);
         emit(ChatLoaded(messages: updatedMessages));

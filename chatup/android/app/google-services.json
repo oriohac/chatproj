@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "801193133748",
+    "project_id": "flutterstudy-chike",
+    "storage_bucket": "flutterstudy-chike.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801193133748:android:b327ada2c1f1da75aa79e1",
+        "android_client_info": {
+          "package_name": "com.example.chatup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNskMVsFdbaB3xCzauYBRJPVJEfjyb08M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801193133748:android:a8accd50b328e10aaa79e1",
+        "android_client_info": {
+          "package_name": "com.example.flutterstudy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNskMVsFdbaB3xCzauYBRJPVJEfjyb08M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

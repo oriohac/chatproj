@@ -9,6 +9,7 @@ This is a Flutter and Django project, created to show how the two frameworks can
 - Websocket
 - DIO (for networking)
 - Go Router (for routing)
+- Shared Preferences
 This is aimed at implementing the best practices on how how to achieve creating production level applications with these tools.
 ## Some pictures of what the app looks like
 ![User List](https://github.com/user-attachments/assets/5610369a-6d1f-4d00-96b9-8e38209758fe)
